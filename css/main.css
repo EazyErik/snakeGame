@@ -15,3 +15,7 @@ body{
     position:absolute;
 
 }
+#item{
+    background-color: yellow;
+    position: absolute;
+}
