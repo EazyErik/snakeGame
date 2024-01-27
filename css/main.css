@@ -7,5 +7,13 @@ body{
 #board{
     background-color: green;
     height:100vh;
+    position:relative;
+
+}
+#player{
+    width:10px;
+    height:10px;
+    background-color: brown;
+    position:absolute;
 
 }
