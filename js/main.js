@@ -5,20 +5,24 @@ class Player {
         this.positionX = 0;
         this.positionY = 0;
         this.createDomElement();
+        this.direction = null;
+        this.isMoving = false;
+        this.moveInterval = null;
+        this.handleKeyDown = this.handleKeyDown.bind(this);
+        this.handleKeyUp = this.handleKeyUp.bind(this);
 
     }
 
     moveLeft() {
         console.log("moving left");
-        this.positionX -= 10;
-        this.domElement.style.left = this.positionX + "vw";
+        this.direction = "left";
+        this.startMoving();
 
     }
     moveRight() {
         console.log("moving right");
-        this.positionX += 10;
-
-        this.domElement.style.left = this.positionX + "vw";
+        this.direction = "right";
+        this.startMoving();
 
     }
     moveUp() {
@@ -42,11 +46,53 @@ class Player {
 
 
     }
+    startMoving() {
+        if (!this.isMoving) {
+            this.isMoving = true;
+            this.moveInterval = setInterval(() => {
+                if (this.direction === "left") {
+                    this.positionX -= 1;
+                } else if (this.direction === "right") {
+                    this.positionX += 1;
+                }
 
+                this.domElement.style.left = this.positionX + "vw";
+            }, 20);
+        }
+    }
+
+    stopMoving() {
+        clearInterval(this.moveInterval);
+        this.isMoving = false;
+    }
+    handleKeyUp(event) {
+        switch (event.code) {
+            case "ArrowLeft":
+            case "ArrowRight":
+                this.stopMoving();
+                break;
+        }
+    }
+    handleKeyDown(event) {
+        switch (event.code) {
+            case "ArrowLeft":
+                this.moveLeft();
+                break;
+            case "ArrowRight":
+                this.moveRight();
+                break;
+        }
+    }
 
 
 }
+
+
+
+
+
 const player = new Player();
+
 document.addEventListener("keydown", (event) => {
     console.log(event);
     switch (event.code) {
@@ -65,4 +111,10 @@ document.addEventListener("keydown", (event) => {
     }
 
 })
+
+
+document.addEventListener("keyup", () => {
+    player.stopMoving();
+});
+
 
