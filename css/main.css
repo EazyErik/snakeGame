@@ -1,18 +1,17 @@
 body{
     margin:0;
     padding:0;
+ 
    
 }
 
 #board{
     background-color: green;
-    height:100vh;
+    height:600px;
+    width:1000px;
+    overflow: hidden;
     position:relative;
 
-}
-#player{
-    background-color: brown;
-    position:absolute;
 
 }
 #item{
