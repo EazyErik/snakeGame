@@ -19,3 +19,7 @@ body{
     background-color: yellow;
     position: absolute;
 }
+.player{
+    position:absolute;
+    background-color:brown;
+}
