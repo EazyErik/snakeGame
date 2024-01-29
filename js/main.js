@@ -141,11 +141,9 @@ class Player {
                     body.style.left = this.position[i].positionX + "px";
                     body.style.bottom = this.position[i].positionY + "px";
                 }
-                //todo: Koerperbewegung hinzufuegen.
-                /* this.domElement.style.left = this.position[0].positionX + "px";
-                 this.domElement.style.bottom = this.position[0].positionY + "px";*/
                 this.itemCollision();
                 this.boarderCollision();
+                this.havenBittenMe();
 
 
 
@@ -182,6 +180,16 @@ class Player {
             this.position[0].positionY >= 570) {
 
             this.stopMoving();
+        }
+    }
+    havenBittenMe(){
+        for(let i = 1; i < this.position.length; i++){
+            if(this.position[0].positionX === this.position[i].positionX &&
+                this.position[0].positionY === this.position[i].positionY){
+                    console.log("AHHHH!")
+                    window.location.href = './gameOver.html';
+                }
+
         }
     }
 
