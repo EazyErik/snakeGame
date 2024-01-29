@@ -4,7 +4,7 @@ class Item {
         this.width = 40;
         this.height = 40;
 
-        this.x = this.getRandomNumber(0, 1000);
+        this.x = this.getRandomNumber(0, 800);
         this.positionX = this.x - this.x % 40;
         this.y = this.getRandomNumber(0, 600);
         this.positionY = this.y - this.y % 40;
@@ -38,12 +38,6 @@ class Item {
 
 }
 
-
-
-
-
-
-
 class Player {
     constructor() {
         this.width = 40;
@@ -55,9 +49,6 @@ class Player {
         this.moveInterval = null;
         this.item = new Item();
         this.speed = 200;
-
-
-
     }
 
     onLeftClick() {
@@ -113,11 +104,25 @@ class Player {
         this.scoreLabel = document.createElement("span");
         this.scoreLabel.textContent = "Score: ";
         this.scoreLabel.style.fontSize = "40px";
+        //create highscore
+        this.highScore = document.createElement("div");
+        this.highScore.setAttribute("id","high-score");
+        this.highScore.style.fontSize = "30px";
+        this.highScore.textContent = localStorage?.getItem("highScore");
+        //create highScore label
+        this.highScoreLabel = document.createElement("span");
+        this.highScoreLabel.textContent = "Highscore: ";
+        this.highScoreLabel.style.fontSize = "40px";
+
+
 
         const board = document.querySelector("#board");
         board.appendChild(this.scoreLabel);
         board.appendChild(this.domElement);
         board.appendChild(this.score);
+        board.appendChild(this.highScoreLabel);
+        board.appendChild(this.highScore);
+      
 
 
     }
@@ -199,8 +204,8 @@ class Player {
             this.position[0].positionY <= -10 ||
             this.position[0].positionY >= 590) {
             
-           console.log("game over");
-               //window.location.href = "./gameOver.html";
+               localStorage.setItem("highScore",this.position.length - 1);
+               window.location.href = "./gameOver.html";
         }
     }
     haveBittenMe() {
@@ -228,7 +233,7 @@ class Player {
             case 20: this.speed -= 20;
                 break;
             case positionLength > 20:
-                this.speed -= 10;
+                this.speed -= 50;
                 break;
 
         }
