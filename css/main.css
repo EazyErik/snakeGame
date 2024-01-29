@@ -1,8 +1,23 @@
 body{
     margin:0;
     padding:0;
+   
  
    
+}
+#game-intro{
+    background-color: aquamarine;
+    display:flex;
+    height:100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+}
+#game-container{
+    display:none;
+}
+#game-end{
+  display:none;
 }
 
 #board{
@@ -13,6 +28,7 @@ body{
 
 
 }
+
 #item{
     background-color: yellow;
     position: absolute;

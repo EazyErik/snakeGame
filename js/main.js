@@ -1,3 +1,4 @@
+
 class Item {
     constructor() {
         this.width = 40;
@@ -34,6 +35,10 @@ class Item {
     }
 
 }
+
+
+
+
 
 
 
@@ -185,8 +190,8 @@ class Player {
             this.position[0].positionX >= 970 ||
             this.position[0].positionY <= -10 ||
             this.position[0].positionY >= 570) {
-
-            window.location.href = "./gameOver.html";
+         
+                window.location.href = "./gameOver.html";
         }
     }
     havenBittenMe() {
@@ -299,8 +304,25 @@ document.addEventListener("keydown", (event) => {
     }
 })
 
+const startButton = document.querySelector("#start-button");
+startButton.addEventListener("click",()=>{
+    const gameContainer = document.querySelector("#game-container");
+    const gameIntro = document.querySelector("#game-intro");
+    console.log("start clicked");
+   
+    gameIntro.style.display = "none";
+    gameContainer.style.display = "block";
+});
+
+const restartButton = document.querySelector("#restart-button");
+restartButton.addEventListener("click",()=>{
+const gameEnd = document.querySelector("#game-end");
+const gameIntro = document.querySelector("#game-intro");
+gameEnd.style.display = "none";
+gameIntro.style.display = "block";
 
 
+})
 
 
 
