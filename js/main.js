@@ -47,6 +47,7 @@ class Player {
         this.isMoving = false;
         this.moveInterval = null;
         this.item = new Item();
+        this.speed = 200;
 
 
 
@@ -153,7 +154,7 @@ class Player {
 
 
 
-            }, 200);
+            },this.speed);
         }
     }
 
@@ -169,7 +170,7 @@ class Player {
             this.position[0].positionY < this.item.positionY + this.item.height &&
             this.position[0].positionY + this.height > this.item.positionY) {
 
-            this.growup();xx
+            this.growup();
             this.item.eat();
           
             this.item = new Item();
@@ -195,6 +196,26 @@ class Player {
                 console.log("AHHHH!")
                 window.location.href = './gameOver.html';
             }
+
+        }
+    }
+
+    increaseSpeed(positionLength) {
+        switch (positionLength) {
+            case 5:
+                this.speed -= 10;
+                break;
+            case 10:
+                this.speed -= 20;
+                break;
+            case 15:
+                this.speed -= 20;
+                break;
+            case 20: this.speed -= 20;
+                break;
+            case positionLength > 20:
+                this.speed -= 10;
+                break;
 
         }
     }
@@ -250,13 +271,11 @@ class Player {
         }
         this.score.textContent = player.position.length -1;
         console.log(this.position)
+        player.increaseSpeed(this.position.length - 1);
     }
 
 
 }
-
-
-
 
 const player = new Player();
 
