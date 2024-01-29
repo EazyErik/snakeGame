@@ -7,7 +7,8 @@ class Item {
         this.x = this.getRandomNumber(0, 1000);
         this.positionX = this.x - this.x % 40;
         this.y = this.getRandomNumber(0, 600);
-        this.positionY = this.y - this.y % 40
+        this.positionY = this.y - this.y % 40;
+        
 
         this.createDomElement();
 
@@ -24,6 +25,7 @@ class Item {
         this.domElement.style.height = this.height + "px";
         this.domElement.style.left = this.positionX + "px";
         this.domElement.style.bottom = this.positionY + "px";
+        
         const board = document.querySelector("#board");
         board.appendChild(this.domElement);
 
@@ -105,9 +107,15 @@ class Player {
         // create score
         this.score = document.createElement("div");
         this.score.setAttribute("id","score");
+        this.score.style.fontSize = "30px";
         this.score.textContent = this.position.length.toString() -1;
+        //create score label
+        this.scoreLabel = document.createElement("span");
+        this.scoreLabel.textContent = "Score: ";
+        this.scoreLabel.style.fontSize = "40px";
 
         const board = document.querySelector("#board");
+        board.appendChild(this.scoreLabel);
         board.appendChild(this.domElement);
         board.appendChild(this.score);
 
