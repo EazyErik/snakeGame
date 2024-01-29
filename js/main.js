@@ -31,7 +31,6 @@ class Item {
 
     eat() {
         this.domElement.remove();
-
     }
 
 }
@@ -97,8 +96,14 @@ class Player {
         this.domElement.style.height = this.height + "px";
         this.domElement.style.left = this.position[0].positionX + "px";
         this.domElement.style.bottom = this.position[0].positionY + "px";
+        // create score
+        this.score = document.createElement("div");
+        this.score.setAttribute("id","score");
+        this.score.textContent = this.position.length.toString() -1;
+
         const board = document.querySelector("#board");
         board.appendChild(this.domElement);
+        board.appendChild(this.score);
 
 
     }
@@ -164,8 +169,9 @@ class Player {
             this.position[0].positionY < this.item.positionY + this.item.height &&
             this.position[0].positionY + this.height > this.item.positionY) {
 
-            this.growup();
+            this.growup();xx
             this.item.eat();
+          
             this.item = new Item();
         }
     }
@@ -179,16 +185,16 @@ class Player {
             this.position[0].positionY <= -10 ||
             this.position[0].positionY >= 570) {
 
-            this.stopMoving();
+            window.location.href = "./gameOver.html";
         }
     }
-    havenBittenMe(){
-        for(let i = 1; i < this.position.length; i++){
-            if(this.position[0].positionX === this.position[i].positionX &&
-                this.position[0].positionY === this.position[i].positionY){
-                    console.log("AHHHH!")
-                    window.location.href = './gameOver.html';
-                }
+    havenBittenMe() {
+        for (let i = 1; i < this.position.length; i++) {
+            if (this.position[0].positionX === this.position[i].positionX &&
+                this.position[0].positionY === this.position[i].positionY) {
+                console.log("AHHHH!")
+                window.location.href = './gameOver.html';
+            }
 
         }
     }
@@ -242,6 +248,7 @@ class Player {
                 })
                 break;
         }
+        this.score.textContent = player.position.length -1;
         console.log(this.position)
     }
 
@@ -253,19 +260,10 @@ class Player {
 
 const player = new Player();
 
-/*document.addEventListener("keyup", (event) => {
-    switch (event.code) {
-        case "ArrowLeft":
-        case "ArrowRight":
-        case "ArrowUp":
-        case "ArrowDown":
-            player.stopMoving();
-            break;
-    }
-})*/
+
 
 document.addEventListener("keydown", (event) => {
-  
+
     switch (event.code) {
         case "ArrowLeft":
             player.onLeftClick();
