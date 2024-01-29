@@ -162,7 +162,7 @@ class Player {
                 }
                 this.itemCollision();
                 this.boarderCollision();
-                this.havenBittenMe();
+                this.haveBittenMe();
 
 
 
@@ -195,14 +195,15 @@ class Player {
     boarderCollision() {
         console.log(this.position[0].positionX)
         if (this.position[0].positionX <= -10 ||
-            this.position[0].positionX >= 970 ||
+            this.position[0].positionX >= 790 ||
             this.position[0].positionY <= -10 ||
-            this.position[0].positionY >= 570) {
-         
-                window.location.href = "./gameOver.html";
+            this.position[0].positionY >= 590) {
+            
+           console.log("game over");
+               //window.location.href = "./gameOver.html";
         }
     }
-    havenBittenMe() {
+    haveBittenMe() {
         for (let i = 1; i < this.position.length; i++) {
             if (this.position[0].positionX === this.position[i].positionX &&
                 this.position[0].positionY === this.position[i].positionY) {

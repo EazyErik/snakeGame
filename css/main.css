@@ -1,6 +1,8 @@
 body {
     margin: 0;
     padding: 0;
+    position: relative;
+    height:100vh;
 
 
 
@@ -25,16 +27,23 @@ body {
 }
 
 #board {
+    margin:auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left:0;
     background-color: green;
-    height: 100vh;
+    height: 600px;
+    width: 800px;
     overflow: hidden;
-    position: relative;
+    
 
 
 }
 
 #item {
-    background-image: url('/images/close-up-fresh-apple.jpg');
+    background-image: url('/images/close-up-fresh-apple-removebg-preview.png');
     background-color: transparent;
     background-size: cover;
     background-repeat: no-repeat;
