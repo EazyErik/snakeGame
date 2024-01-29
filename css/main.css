@@ -7,8 +7,7 @@ body{
 
 #board{
     background-color: green;
-    height:600px;
-    width:1000px;
+    height:100vh;
     overflow: hidden;
     position:relative;
 
