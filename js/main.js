@@ -288,11 +288,25 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+//create inputField
+const input = document.createElement("input");
+input.type = "text";
+input.setAttribute("value", "");
+input.className = "input";
+const intro = document.querySelector("#game-intro");
+intro.appendChild(input);
+
+input.addEventListener("click", () => {
+  startButton.removeAttribute("disabled");
+  console.log(input.value);
+  localStorage.setItem("name", input.value);
+});
+
 const startButton = document.querySelector("#start-button");
+startButton.setAttribute("disabled", true);
 startButton.addEventListener("click", () => {
   const gameContainer = document.querySelector("#game-container");
   const gameIntro = document.querySelector("#game-intro");
-  console.log("start clicked");
 
   gameIntro.style.display = "none";
   gameContainer.style.display = "block";
