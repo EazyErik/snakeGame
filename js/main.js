@@ -96,7 +96,18 @@ class Player {
     this.highScore = document.createElement("div");
     this.highScore.setAttribute("id", "high-score");
     this.highScore.style.fontSize = "30px";
-    this.highScore.textContent = localStorage?.getItem("highScore");
+    const scores = JSON.parse(localStorage?.getItem("highScoreRanking"));
+    let bestPlayer = scores?.reduce((max, current) =>
+      max.score > current.score ? max : current
+    );
+    if (bestPlayer?.score == null) {
+      bestPlayer = {
+        score: 0,
+      };
+    } else {
+      this.highScore.textContent = bestPlayer.score;
+    }
+
     //create highScore label
     this.highScoreLabel = document.createElement("span");
     this.highScoreLabel.setAttribute("id", "highScore-label");
@@ -181,22 +192,36 @@ class Player {
       this.position[0].positionY <= -10 ||
       this.position[0].positionY >= 590
     ) {
-      localStorage.setItem("highScore", this.position.length - 1);
-
-      window.location.href = "./gameOver.html";
+      this.saveScoreData();
     }
   }
+
   haveBittenMe() {
     for (let i = 1; i < this.position.length; i++) {
       if (
         this.position[0].positionX === this.position[i].positionX &&
         this.position[0].positionY === this.position[i].positionY
       ) {
-        localStorage.setItem("highScore", this.position.length - 1);
-
-        window.location.href = "./gameOver.html";
+        this.saveScoreData();
       }
     }
+  }
+
+  saveScoreData() {
+    const playerName = localStorage.getItem("playerName");
+    console.log(playerName);
+    const highScoreRanking =
+      JSON.parse(localStorage.getItem("highScoreRanking")) || [];
+    console.log("before: " + highScoreRanking);
+
+    const newScore = {
+      name: playerName,
+      score: this.position.length - 1,
+    };
+
+    highScoreRanking.push(newScore);
+    localStorage.setItem("highScoreRanking", JSON.stringify(highScoreRanking));
+    window.location.href = "./gameOver.html";
   }
 
   increaseSpeed(positionLength) {
@@ -291,21 +316,21 @@ document.addEventListener("keydown", (event) => {
       break;
   }
 });
-
 const startButton = document.querySelector("#start-button");
+const input = document.querySelector("#input-name");
+startButton.setAttribute("disabled", true);
+input.addEventListener("input", () => {
+  if (input.value.trim().length > 0) {
+    startButton.removeAttribute("disabled");
+  } else {
+    startButton.setAttribute("disabled", true);
+  }
+});
 
 startButton.addEventListener("click", () => {
   const gameContainer = document.querySelector("#game-container");
   const gameIntro = document.querySelector("#game-intro");
-
+  localStorage.setItem("playerName", input.value);
   gameIntro.style.display = "none";
   gameContainer.style.display = "block";
-});
-
-const restartButton = document.querySelector("#restart-button");
-restartButton.addEventListener("click", () => {
-  const gameEnd = document.querySelector("#game-end");
-  const gameIntro = document.querySelector("#game-intro");
-  gameEnd.style.display = "none";
-  gameIntro.style.display = "block";
 });
