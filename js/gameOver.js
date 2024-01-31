@@ -1,13 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("script is running");
-
   const ranking = document.querySelector("#ranking");
-  console.log(ranking);
 
   let highScoreRanking = [];
 
   try {
-    console.log("within try catch");
     highScoreRanking =
       JSON.parse(localStorage.getItem("highScoreRanking")) || [];
   } catch (error) {
@@ -26,8 +22,5 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 const restartButton = document.querySelector("#restart-button");
 restartButton.addEventListener("click", () => {
-  const gameEnd = document.querySelector("#game-end");
-  const gameIntro = document.querySelector("#game-intro");
-  gameEnd.style.display = "none";
-  gameIntro.style.display = "block";
+  window.location.href = "./index.html";
 });

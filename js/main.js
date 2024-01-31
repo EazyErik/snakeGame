@@ -185,7 +185,6 @@ class Player {
   }
 
   boarderCollision() {
-    console.log(this.position[0].positionX);
     if (
       this.position[0].positionX <= -10 ||
       this.position[0].positionX >= 790 ||
@@ -209,10 +208,9 @@ class Player {
 
   saveScoreData() {
     const playerName = localStorage.getItem("playerName");
-    console.log(playerName);
+
     const highScoreRanking =
       JSON.parse(localStorage.getItem("highScoreRanking")) || [];
-    console.log("before: " + highScoreRanking);
 
     const newScore = {
       name: playerName,
@@ -227,19 +225,19 @@ class Player {
   increaseSpeed(positionLength) {
     switch (positionLength) {
       case 5:
-        this.speed -= 10;
+        this.speed -= 30;
         break;
       case 10:
-        this.speed -= 20;
+        this.speed -= 50;
         break;
       case 15:
-        this.speed -= 20;
+        this.speed -= 40;
         break;
       case 20:
         this.speed -= 20;
         break;
-      case positionLength > 20:
-        this.speed -= 50;
+      case 25:
+        this.speed -= 30;
         break;
     }
   }
@@ -256,7 +254,6 @@ class Player {
     board.appendChild(body);
     switch (this.direction) {
       case "up":
-        console.log(this.direction);
         this.position.push({
           positionX: this.item.positionX,
           positionY: this.item.positionY + 40,
@@ -264,28 +261,24 @@ class Player {
 
         break;
       case "down":
-        console.log(this.direction);
         this.position.push({
           positionX: this.item.positionX,
           positionY: this.item.positionY - 40,
         });
         break;
       case "right":
-        console.log(this.direction);
         this.position.push({
           positionX: this.item.positionX + 40,
           positionY: this.item.positionY,
         });
         break;
       case "left":
-        console.log(this.direction);
         this.position.push({
           positionX: this.item.positionX - 40,
           positionY: this.item.positionY,
         });
         break;
       default:
-        console.log("error" + this.direction);
         this.position.push({
           positionX: this.item.positionX,
           positionY: this.item.positionY,
@@ -293,7 +286,6 @@ class Player {
         break;
     }
     this.score.textContent = player.position.length - 1;
-    console.log(this.position);
     player.increaseSpeed(this.position.length - 1);
   }
 }

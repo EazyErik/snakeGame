@@ -13,7 +13,18 @@ body {
   font-size: 200%;
   font-family: monospace;
 }
+#restart-button {
+  background-color: black;
+  width: 100px;
+  height: 30px;
+  color: white;
+  border-radius: 4px;
+}
 
+#restart-button:hover {
+  background-color: gray;
+  cursor: pointer;
+}
 a {
   font-family: monospace;
   text-decoration: none;
