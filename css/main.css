@@ -1,0 +1,71 @@
+body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  height: 100vh;
+  font-family: monospace;
+}
+
+#game-intro {
+  background-image: url(../images/wp2409705-snake-game-wallpapers.jpg);
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#game-container {
+  display: none;
+}
+
+#game-end {
+  display: none;
+}
+
+#board {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: green;
+  height: 600px;
+  width: 800px;
+  overflow: hidden;
+}
+
+#item {
+  background-image: url("../images/close-up-fresh-apple-removebg-preview.png");
+  background-color: transparent;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  width: 40px;
+  height: 40px;
+  /* background-color: yellow; */
+  position: absolute;
+}
+#start-button {
+  background-color: black;
+  width: 100px;
+  height: 30px;
+  color: white;
+}
+
+#start-button:hover {
+  background-color: grey;
+  cursor: pointer;
+}
+
+.player {
+  position: absolute;
+  background-color: brown;
+  border: 2px solid black;
+}
