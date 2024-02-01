@@ -36,7 +36,7 @@ class Player {
   constructor() {
     this.width = 40;
     this.height = 40;
-    this.position = [{ positionX: 400, positionY: 400 }];
+    this.position = [{ positionX: 40, positionY: 40 }];
     this.createDomElement();
     this.direction = null;
     this.isMoving = false;
